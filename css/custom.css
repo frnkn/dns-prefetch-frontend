@@ -149,3 +149,12 @@
     max-height: 570px;
   }
 }
+
+.error {
+  display: none;
+  color: red;
+}
+
+.results {
+  text-align: left;
+}

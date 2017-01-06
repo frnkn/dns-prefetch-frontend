@@ -5,9 +5,9 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Skeleton: Responsive CSS Boilerplate</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <title>DNS Prefetching: Create DNS Prefetch Meta Tags for your Site</title>
+  <meta name="description" content="FRNKN DNS prefetching lets you craete DNS prefetch meta tags automatically. Just enter the URL of your website and FRNKN creates dns prefetch meta tags based on your css, js and image urls.">
+  <meta name="author" content="Carl Bednorz">
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -41,36 +41,55 @@
     <div class="container">
       <div class="row">
         <div class="one-half column">
-          <h4 class="hero-heading">Stop coding non-responsive sites. Let users view sites from anywhere.</h4>
-          <a class="button button-primary" href="http://getskeleton.com">Try Skeleton</a>
+          <h1 class="hero-heading">DNS Prefetching: Simply Create DNS Prefetch Meta Tags From Your Website</h1>
+          <a class="button button-primary" href="http://getskeleton.com">Learn more about DNS Prefetching</a>
         </div>
         <div class="one-half column phones">
+          <div class="error">
 
-            <input type=url class="url-input" />
-            <button class="go">Go</button>
-          
+          </div>
+          <label for="urlInput">Enter your website url:</label>
+          <input class="u-full-width url-input" type="url" placeholder="http://www.example.org" id="urlInput">
+          <button class="go">Go</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="section values">
+  <div class="section results">
     <div class="container">
       <div class="row">
-        <div class="one-third column value">
-          <h2 class="value-multiplier">67%</h2>
-          <h5 class="value-heading">Purchase Increase</h5>
-          <p class="value-description">Percentage of users more likely to purchase on mobile friendly site.</p>
+        <div class="one-third column">
+          <h2>DNS Prefetching - Results</h2>
+          <p>
+            Based on the analysis of your site, we recommend to use the following dns prefetch meta tags within the head section of your site.
+          </p>
         </div>
-        <div class="one-third column value">
-          <h2 class="value-multiplier">90%</h2>
-          <h5 class="value-heading">Multi-device Users</h5>
-          <p class="value-description">Most of the world accesses the internet on multiple devices.</p>
+        <div class="two-thirds column">
+<pre><code>.some-class {
+  background-color: red;
+}</code></pre>
+        <p class="result-summary" style="display: none">
+
+        </p>
+        <div class="raw-results css-results">
+          <h3>CSS Ressources</h3>
+          <ul class="css-results-list">
+
+          </ul>
         </div>
-        <div class="one-third column value">
-          <h2 class="value-multiplier">66%</h2>
-          <h5 class="value-heading">Sad Users</h5>
-          <p class="value-description">Percentage of users that are frustrated with page load times.</p>
+        <div class="raw-results js-results">
+          <h3>Javascript Ressources</h3>
+          <ul class="js-results-list">
+
+          </ul>
+        </div>
+        <div class="raw-results img-results">
+          <h3>Image Ressources</h3>
+          <ul class="img-results-list">
+
+          </ul>
+        </div>
         </div>
       </div>
     </div>

@@ -5,47 +5,45 @@
 * make ajax call
 */
 
+function _clear_url(input){
+  var i = input.replace("http://", "");
+  var j = i.replace("https://", "");
+  return j;
+}
 
 function _validate_url(input){
-  // Remove any http:// and https:// in string
-  var i = input.replace("http://");
-  var j = i.replace("https://");
-
   // Define Regex
   var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
   var regex = new RegExp(expression);
 
-
   // Validate url input
-  if (j.match(regex)) {
-    alert("Successful match");
+  if (input.match(regex)) {
     return true;
   } else {
-    alert("No match");
     return false;
   }
 }
 
-function _make_api_call(url){
-  $.get(
-    "https://whquhxg9ii.execute-api.eu-west-1.amazonaws.com/dev/dns-prefetch/" + url,
-    function(data){
-      console.log(data);
-      alert( "Load was performed." );
-    }
-  )
-}
+
 
 $( document ).ready(function(){
 
+  //var api_endpoint = "https://whquhxg9ii.execute-api.eu-west-1.amazonaws.com/dev/dns-prefetch/";
+
+  var api_endpoint = "http://localhost:8000/dns-prefetch/";
+
   $('.go').click(function(e){
+
+    $('.error').hide();
+    $('.error').html("");
     e.preventDefault();
 
     var url = $('.url-input').val();
+    var cleaned_url = _clear_url(url);
 
-    if (_validate_url(url)) {
+    if (_validate_url(cleaned_url)) {
       $.ajax({
-        url: "https://whquhxg9ii.execute-api.eu-west-1.amazonaws.com/dev/dns-prefetch/" + url,
+        url: api_endpoint + cleaned_url,
         type: "GET",
         beforeSend: function(){
           $('.wait').show();
@@ -54,14 +52,42 @@ $( document ).ready(function(){
           $('.wait').hide();
         },
         success: function(data){
-          console.log(data);
-          alert( "load was performed");
+          console.log(data.results);
+          var css_urls = data.results.css_urls;
+          var js_urls = data.results.js_urls;
+          var img_urls = data.results.img_urls;
+
+          // Aggregate static urls to host.
+
+          // Render meta tag in pre code element
+
+          // Render Summary Results
+          $('.result-summary').html('You have' + css_urls.length + " css, " + js_urls.length + " javascript and " + img_urls.length + " image ressources on your page.");
+          $('.result-summary').show();
+
+          // Render static asset urls based on css, js and images
+          $.each(css_urls, function(i, val){
+            $('.css-results-list').append("<li>" + val + "</li>");
+          });
+
+          $.each(js_urls, function(i, val){
+            $('.js-results-list').append("<li>" + val + "</li>");
+          });
+
+          $.each(img_urls, function(i, val){
+            $('.img-results-list').append("<li>" + val + "</li>");
+          });
         },
         error: function(data, error){
           console.log(error);
-          alert( "error occurred");
+          $('.error').show();
+          $('.error').html("There seems to be a problem with your website! It seems not to be available right now or it simply does not exist.");
         }
       });
+    }
+    else {
+      $('.error').show();
+      $('.error').html("That's not a valid url!");
     }
   });
 });
