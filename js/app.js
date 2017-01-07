@@ -24,7 +24,36 @@ function _validate_url(input){
   }
 }
 
+function _clean_dns_prefetch(input){
+  // iterate through array and get only those items that are external urls
 
+  // remove http, or https url needs to llok like //subdomain.host.tld and no path
+
+
+
+}
+
+function _merge_array(input){
+  arr = input.results.css_urls.slice();
+  arr = arr.concat(input.results.js_urls);
+  arr = arr.concat(input.results.img_urls);
+
+  return arr;
+}
+function _create_dns_prefetch_meta_tag(input){
+  // <link rel="dns-prefetch" href="//s3.amazonaws.com">
+  // aggregate resukts dict into one large array
+  all_urls = _merge_array(input);
+  cleaned_urls = _clean_dns_prefetch(all_urls);
+  // from this array get all entries into another one, but just proper urls
+
+
+  console.log("ARR", arr);
+
+  // aggregate this array to just find the unique urls
+
+  // create the tag
+}
 
 $( document ).ready(function(){
 
@@ -58,7 +87,7 @@ $( document ).ready(function(){
           var img_urls = data.results.img_urls;
 
           // Aggregate static urls to host.
-
+          _create_dns_prefetch_meta_tag(data);
           // Render meta tag in pre code element
 
           // Render Summary Results
