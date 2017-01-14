@@ -4,11 +4,33 @@
 * Validate input to be a correct url
 * make ajax call
 */
+Array.prototype.contains = function(v) {
+    for(var i = 0; i < this.length; i++) {
+        if(this[i] === v) return true;
+    }
+    return false;
+};
+
+Array.prototype.unique = function() {
+    var arr = [];
+    for(var i = 0; i < this.length; i++) {
+        if(!arr.contains(this[i])) {
+            arr.push(this[i]);
+        }
+    }
+    return arr;
+}
 
 function _clear_url(input){
-  var i = input.replace("http://", "");
-  var j = i.replace("https://", "");
-  return j;
+  if (input != null){
+    var i = input.replace("http://", "");
+    var j = i.replace("https://", "");
+    return j;
+  }
+  else {
+    return "http://xyz.abc.de";
+  }
+
 }
 
 function _validate_url(input){
@@ -24,13 +46,30 @@ function _validate_url(input){
   }
 }
 
+function _make_dns_prefetch_url(url){
+  var cleared_url = _clear_url(url);
+
+  var dns_prefetch_url = cleared_url.split("/")[0];
+
+  return dns_prefetch_url;
+}
+
 function _clean_dns_prefetch(input){
   // iterate through array and get only those items that are external urls
+  var cleaned_urls = []
 
-  // remove http, or https url needs to llok like //subdomain.host.tld and no path
+  $.each(input, function(i, val){
+    var cleared_url = _clear_url(val);
+    //console.log("CLEARED_URL", cleared_url);
+    if (_validate_url(cleared_url)){
+      var the_url = _make_dns_prefetch_url(cleared_url);
+      //console.log("THE URL", the_url);
+      cleaned_urls.push(the_url);
+    }
 
 
-
+  });
+  return cleaned_urls;
 }
 
 function _merge_array(input){
@@ -40,15 +79,29 @@ function _merge_array(input){
 
   return arr;
 }
+
 function _create_dns_prefetch_meta_tag(input){
   // <link rel="dns-prefetch" href="//s3.amazonaws.com">
   // aggregate resukts dict into one large array
-  all_urls = _merge_array(input);
-  cleaned_urls = _clean_dns_prefetch(all_urls);
-  // from this array get all entries into another one, but just proper urls
+  var all_urls = _merge_array(input);
+  var cleaned_urls = _clean_dns_prefetch(all_urls);
+  var dns_prefetch_url = "";
+  meta_urls = []
+  console.log("CLEANED URLS", cleaned_urls);
+  $.each(cleaned_urls, function(i, val){
+    dns_prefetch_url = _make_dns_prefetch_url(val);
+    meta_urls.push(dns_prefetch_url);
+
+  });
 
 
-  console.log("ARR", arr);
+  console.log("DNS PREFETCH URL", dns_prefetch_url);
+  console.log("MEAT URLS", meta_urls);
+  //  get only the unique items in the meta urls array
+  var unique_urls = meta_urls.unique();
+  //var unique_urls = meta_urls.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+  console.log("Unique URLS", unique_urls);
+  return unique_urls;
 
   // aggregate this array to just find the unique urls
 
@@ -87,9 +140,17 @@ $( document ).ready(function(){
           var img_urls = data.results.img_urls;
 
           // Aggregate static urls to host.
-          _create_dns_prefetch_meta_tag(data);
+          var meta_tag_urls = _create_dns_prefetch_meta_tag(data);
           // Render meta tag in pre code element
-
+          var meta_tag_string = "";
+          $.each(meta_tag_urls, function(i, val){
+            console.log("VAL", val);
+            if(val != ""){
+              meta_tag_string += '&ltlink rel="dns-prefetch" href="//' + val + '"&gt\n';
+            }
+          });
+          console.log("META TAG STRING", meta_tag_string);
+          $('.dns-prefetch-code-snippet').html("<pre><code>"+ meta_tag_string + "</code></pre>");
           // Render Summary Results
           $('.result-summary').html('You have' + css_urls.length + " css, " + js_urls.length + " javascript and " + img_urls.length + " image ressources on your page.");
           $('.result-summary').show();
