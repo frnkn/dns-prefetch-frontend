@@ -159,18 +159,40 @@
   text-align: left;
 }
 
+.res-image {
+  min-width: 100%;
+  height: auto;
+  background-color: #000;
+}
+
+.intro-section {
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.intro-container {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+
+}
+
+.start-hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 75%;
+  transform: translate(-50%, -50%);
+}
+
 @media (min-width: 1000px) {
   .intro-section {
     position: relative;
     width: 100%;
   }
 
-  .res-image {
-    min-width: 100%;
-    height: auto;
-    /*height: 100%;*/
-    background-color: #000;
-  }
+
 
   .intro-container {
     position: relative;
@@ -204,4 +226,8 @@
 
 .search-dns {
 
+}
+
+.xs-hidden {
+  display: none;
 }
