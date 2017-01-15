@@ -174,6 +174,10 @@ $( document ).ready(function(){
           $.each(img_urls, function(i, val){
             $('.img-results-list').append("<li>" + val + "</li>");
           });
+
+          $('html, body').animate({
+              scrollTop: $(".results").offset().top
+          }, 2000);
         },
         error: function(data, error){
           console.log(error);
