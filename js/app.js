@@ -25,7 +25,8 @@ function _clear_url(input){
   if (input != null){
     var i = input.replace("http://", "");
     var j = i.replace("https://", "");
-    return j;
+    var k = j.replace("//", "");
+    return k;
   }
   else {
     return "http://xyz.abc.de";
@@ -59,7 +60,9 @@ function _clean_dns_prefetch(input){
   var cleaned_urls = []
 
   $.each(input, function(i, val){
+    console.log("VAL IN", val);
     var cleared_url = _clear_url(val);
+    console.log("VAL OUT", cleared_url);
     //console.log("CLEARED_URL", cleared_url);
     if (_validate_url(cleared_url)){
       var the_url = _make_dns_prefetch_url(cleared_url);
@@ -118,6 +121,7 @@ $( document ).ready(function(){
 
     $('.error').hide();
     $('.error').html("");
+
     e.preventDefault();
 
     var url = $('.url-input').val();
@@ -135,6 +139,10 @@ $( document ).ready(function(){
         },
         success: function(data){
           console.log(data.results);
+          $('.css-results-list').html("");
+          $('.js-results-list').html("");
+          $('.img-results-list').html("");
+
           var css_urls = data.results.css_urls;
           var js_urls = data.results.js_urls;
           var img_urls = data.results.img_urls;
@@ -144,7 +152,6 @@ $( document ).ready(function(){
           // Render meta tag in pre code element
           var meta_tag_string = "";
           $.each(meta_tag_urls, function(i, val){
-            console.log("VAL", val);
             if(val != ""){
               meta_tag_string += '&ltlink rel="dns-prefetch" href="//' + val + '"&gt\n';
             }
@@ -152,7 +159,7 @@ $( document ).ready(function(){
           console.log("META TAG STRING", meta_tag_string);
           $('.dns-prefetch-code-snippet').html("<pre><code>"+ meta_tag_string + "</code></pre>");
           // Render Summary Results
-          $('.result-summary').html('You have' + css_urls.length + " css, " + js_urls.length + " javascript and " + img_urls.length + " image ressources on your page.");
+          $('.result-summary').html('You have ' + css_urls.length + " css, " + js_urls.length + " javascript and " + img_urls.length + " image ressources on your page.");
           $('.result-summary').show();
 
           // Render static asset urls based on css, js and images
