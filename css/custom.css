@@ -186,6 +186,24 @@
   transform: translate(-50%, -50%);
 }
 
+
+@media (min-width: 550px) {
+  .intro-section {
+    position: relative;
+    text-align: left;
+    width: 100%;
+  }
+
+  .start-hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
 @media (min-width: 1000px) {
   .intro-section {
     position: relative;
