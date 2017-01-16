@@ -168,7 +168,7 @@ $( document ).ready(function(){
           });
 
           $.each(js_urls, function(i, val){
-            $('.js-results-list').append("<li>" + val + "</li>");
+            $('.js-results-list').append("<li><a href=" + val + "</li>");
           });
 
           $.each(img_urls, function(i, val){
