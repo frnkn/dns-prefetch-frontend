@@ -61,7 +61,7 @@
               DNS Prefetching enables your users to load CSS, Javascript and images faster.
               <span class="xs-hidden">The X-DNS-Prefetch-Control HTTP response header controls DNS prefetching, a feature by which browsers proactively perform domain name resolution on both links that the user may choose to follow as well as URLs for items referenced by the document, including images, CSS, JavaScript, and so forth.</span>
             </p>
-            <a class="button button-white xs-hidden" href="#">Learn more about DNS Prefetching</a>
+            <a class="button button-white xs-hidden" href="#dns-content">Learn more about DNS Prefetching</a>
           </div>
           <div class="one-half column search-dns">
             <div class="error">
@@ -77,7 +77,7 @@
     <div class="container">
       <div class="row">
         <div class="one-third column">
-          <h2>DNS Prefetching - Results</h2>
+          <h3 class="section-heading">DNS Prefetching - Results</h2>
           <p>
             Based on the analysis of your site, we recommend to use the following dns prefetch meta tags within the head section of your site.
           </p>
@@ -96,7 +96,10 @@
       <div class="row">
         <div class="column">
           <div class="raw-results css-results">
-            <h3>The following Ressources are available on your website and are used for creating the DNS prefetch meta tag</h2>
+            <h3>Your static site ressources</h3>
+            <p>
+              The following Ressources are available on your website and are used for creating the DNS prefetch meta tag:
+            </p>
             <h4>CSS Ressources</h3>
             <ul class="css-results-list res-list">
 
@@ -119,41 +122,35 @@
     </div>
   </div>
 
-  <div class="section get-help">
-    <div class="containers">
-      <div class="img-wrapper">
-        <picture title="DNS Prefetching - Capture X-DNS-Prefetch Contol Tags for your website to boost website page load peformance">
-          <!-- XS -->
-          <source srcset="/img/dns-prefetch-frnkn-xs.jpg" media="(max-width: 479px)" />
-          <!-- S -->
-          <source srcset="/img/dns-prefetch-frnkn-s.jpg" media="(max-width: 767px)" />
-          <!-- M Landscape -->
-          <source srcset="/img/dns-prefetch-frnkn-m-landscape.jpg" media="(max-width: 1023px) and (max-height: 768px)" />
-          <!-- M Portrait -->
-          <source srcset="/img/dns-prefetch-frnkn-m-portrait.jpg" media="(max-width: 1023px)" />
-          <!-- L -->
-          <source srcset="/img/dns-prefetch-frnkn-xl.jpg" media="(min-width: 1279px)" />
-          <img class="res-image" src="/img/frnkn-web-performance-consulting.jpeg" alt="DNS Prefetching - Capture X-DNS-Prefetch Contol Tags for your website to boost website page load peformance" />
-        </picture>
-      </div>
-      <h3 class="section-heading">Need help improving your page speed performance?</h3>
-      <p class="section-description">Skeleton is an amazingly easy place to start with responsive development. If you want to learn more, just visit the documentation!</p>
-      <a class="button button-primary" href="http://getskeleton.com">View Skeleton Docs</a>
+  <div id="dns-content" class="section categories">
+    <div class="container">
+      <h3 class="section-heading">All you need to know about X-DNS-Prefetch-Control Meta Tags</h3>
+      <p class="section-description left-align">Skeleton images sit easily in grid with .u-max-full-width class. I suggest exploring solution to serving different images based on device size.</p>
+      <p class="section-description left-align">
+        The X-DNS-Prefetch-Control HTTP response header controls DNS prefetching, a feature by which browsers proactively perform domain name resolution on both links that the user may choose to follow as well as URLs for items referenced by the document, including images, CSS, JavaScript, and so forth.
+      </p>
+      <p class="section-description left-align">
+        This prefetching is performed in the background, so that the DNS is likely to have been resolved by the time the referenced items are needed. This reduces latency when the user clicks a link.
+      </p>
+
+      <p class="section-description left-align">
+        DNS requests are very small in terms of bandwidth, but latency can be quite high, especially on mobile networks. By speculatively prefetching DNS results, latency can be reduced significantly at certain times, such as when the user clicks the link. In some cases, latency can be reduced by a second.
+      </p>
+      <p class="section-description left-align">
+        The implementation of this prefetching in some browsers allows domain name resolution to occur in parallel with (instead of in serial with) the fetching of actual page content. By doing this, the high-latency domain name resolution process doesn't cause any delay while fetching content.
+      </p>
+      <p class="section-description left-align">
+        Page load times – especially on mobile networks – can be measurably improved in this way. If the domain names for images can be resolved in advance of the images being requested, pages that load many images can see an improvement of 5% or more in the time of loading images.
+      </p>
+
     </div>
   </div>
 
-  <div class="section categories">
+  <div class="section get-help">
     <div class="container">
-      <h3 class="section-heading">Responsive Images</h3>
-      <p class="section-description">Skeleton images sit easily in grid with .u-max-full-width class. I suggest exploring solution to serving different images based on device size.</p>
-      <div class="row">
-        <div class="one-half column category">
-          <img class="u-max-full-width" src="images/placeholder.png">
-        </div>
-        <div class="one-half column category">
-          <img class="u-max-full-width" src="images/placeholder.png">
-        </div>
-      </div>
+      <h3 class="section-heading">Need help improving your page speed performance?</h3>
+      <p class="section-description">Some Marketing Blabla</p>
+      <a class="button button-primary" href="http://getskeleton.com">Get in touch now</a>
     </div>
   </div>
 

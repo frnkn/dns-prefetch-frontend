@@ -157,6 +157,7 @@
 
 .results {
   text-align: left;
+  background-color: #33C3F0;
 }
 
 
@@ -313,4 +314,17 @@ picture {
 
 .search-dns {
 
+}
+
+
+.get-help {
+  background-color: yellow;
+}
+
+.categories {
+  background-color: #33C3F0;
+}
+
+.left-align {
+  text-align: left;
 }

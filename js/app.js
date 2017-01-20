@@ -168,7 +168,7 @@ $( document ).ready(function(){
           });
 
           $.each(js_urls, function(i, val){
-            $('.js-results-list').append("<li><a href=" + val + "</li>");
+            $('.js-results-list').append("<li>" + val + "</li>");
           });
 
           $.each(img_urls, function(i, val){
@@ -190,5 +190,16 @@ $( document ).ready(function(){
       $('.error').show();
       $('.error').html("That's not a valid url!");
     }
+  });
+});
+
+
+$( document ).ready(function(){
+  $('a[href^=#]').on('click', function(e){
+    var href = $(this).attr('href');
+    $('html, body').animate({
+      scrollTop:$(href).offset().top
+    },'slow');
+    e.preventDefault();
   });
 });
